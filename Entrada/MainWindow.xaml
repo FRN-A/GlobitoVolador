@@ -16,10 +16,20 @@
                         <ScaleTransform ScaleX="-1"/>
                         <SkewTransform/>
                         <RotateTransform/>
-                        <TranslateTransform X="-42"/>
+                        <TranslateTransform X="-5.2"/>
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
+            <Image x:Name="imgBatman" Height="146" Canvas.Left="554" Canvas.Top="188" Width="126" Source="batman.png"/>
+            <Image x:Name="imgNube" Height="100" Canvas.Left="1010" Canvas.Top="112" Width="158" Source="nube1.png"/>
+            <Image x:Name="imgOvni" Height="134" Canvas.Left="960" Canvas.Top="269" Width="150" Source="ovni.png" RenderTransformOrigin="2.693,0.97"/>
+            <Image x:Name="imgPutin" Height="136" Canvas.Left="510" Canvas.Top="382" Width="150" Source="putin.png"/>
+            <Image x:Name="imgEdificio" Height="426" Canvas.Left="780" Canvas.Top="176" Width="144" Source="edificio1.png"  />
+            <Image Height="100" Canvas.Left="1110" Canvas.Top="499" Width="100" />
+
+            <TextBlock x:Name="lbl_frecuencia200" TextWrapping="Wrap" Text="200 " Canvas.Top="565" FontFamily="Agero" FontSize="32"/>
+            <TextBlock x:Name="lbl_frecuencia325" TextWrapping="Wrap" Text="350 " Canvas.Top="325" FontFamily="Agero" FontSize="32"/>
+            <TextBlock x:Name="lbl_frecuencia450" TextWrapping="Wrap" Text="500 "  Canvas.Top="0" FontFamily="Agero" FontSize="32"/>
         </Canvas>
 
     </Grid>

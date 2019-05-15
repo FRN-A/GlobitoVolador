@@ -31,11 +31,20 @@ namespace Entrada
         WaveIn waveIn;
 		DispatcherTimer timer;
 		Stopwatch cronometro;
+        Stopwatch cronometroElementos;
 
 		float bottomGloboFrecuencia;
 		float bottomGlobo;
 		float frecuenciaActual = 0;
 		float frecuenciaAnterior;
+
+        float tiempoActual = 0.0f;
+        float tiempoDiferencial = 0.0f;
+        float tiempoAnterior = 0.0f;
+        float velocidadEnemigo = 0.8f;
+
+        List<Image> elementos = new List<Image>();
+
 		
 
 		public MainWindow()
@@ -46,10 +55,34 @@ namespace Entrada
 
 			
 			cronometro = new Stopwatch();
+            cronometroElementos = new Stopwatch();
 			InitializeComponent();
         }
 
-		private void Timer_Tick(object sender, EventArgs e)
+        private void llenarListaElementos()
+        {
+            elementos.Add(imgCarro);
+            elementos.Add(imgBatman);
+            elementos.Add(imgEdificio);
+            elementos.Add(imgNube);
+            elementos.Add(imgOvni);
+            elementos.Add(imgPutin);
+           
+        }
+        private void moverElementos()
+        {
+            tiempoActual = cronometroElementos.ElapsedMilliseconds;
+            tiempoDiferencial = tiempoActual - tiempoAnterior;
+            tiempoAnterior = tiempoActual;
+
+            foreach (Image imagen in elementos)
+            {
+                var leftElemento = Canvas.GetLeft(imagen);
+                Canvas.SetLeft(imagen, (leftElemento -= (velocidadEnemigo * tiempoDiferencial) * 0.5));
+            }
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
 		{
 			lblFrecuencia.Text = frecuenciaActual.ToString("f");
 
@@ -77,11 +110,13 @@ namespace Entrada
 			{
 				cronometro.Restart();
 			}
-		}
+            moverElementos();
+        }
 
         private void btnIniciar_Click(object sender, RoutedEventArgs e)
         {
 			timer.Start();
+            cronometroElementos.Start();
             waveIn = new WaveIn();
             //Formato de audio
             waveIn.WaveFormat =
@@ -93,10 +128,14 @@ namespace Entrada
             waveIn.DataAvailable += WaveIn_DataAvailable;
 
             waveIn.StartRecording();
+
+            llenarListaElementos();
+
 			cronometro.Start();
 		
 			bottomGlobo = (float)Canvas.GetBottom(Globo);
 		}
+
 
 		private void WaveIn_DataAvailable(object sender, WaveInEventArgs e)
 		{
