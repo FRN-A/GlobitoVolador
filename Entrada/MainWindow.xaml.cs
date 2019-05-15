@@ -33,7 +33,8 @@ namespace Entrada
 		Stopwatch cronometro;
         Stopwatch cronometroElementos;
 
-		float bottomCarro;
+		float bottomGloboFrecuencia;
+		float bottomGlobo;
 		float frecuenciaActual = 0;
 		float frecuenciaAnterior;
 
@@ -43,6 +44,7 @@ namespace Entrada
         float velocidadEnemigo = 0.8f;
 
         List<Image> elementos = new List<Image>();
+
 		
 
 		public MainWindow()
@@ -51,6 +53,7 @@ namespace Entrada
 			timer.Interval = TimeSpan.FromMilliseconds(20);
 			timer.Tick += Timer_Tick;
 
+			
 			cronometro = new Stopwatch();
             cronometroElementos = new Stopwatch();
 			InitializeComponent();
@@ -83,18 +86,25 @@ namespace Entrada
 		{
 			lblFrecuencia.Text = frecuenciaActual.ToString("f");
 
+			if(bottomGlobo > 0)
+			{
+				Canvas.SetBottom(Globo, bottomGlobo--);
+			}
+			
+
 			//Carro
 			//top 500	
 			if (frecuenciaActual>=frecuenciaAnterior-25.0f && frecuenciaActual<=frecuenciaAnterior+25.0f)
 			{
 				//evaluar si ya paso un segundo
-				if(cronometro.ElapsedMilliseconds >= 250)
+				if(cronometro.ElapsedMilliseconds >= 500)
 				{
-					Canvas.SetBottom(elementos[0], bottomCarro);
+					Canvas.SetBottom(Globo, bottomGloboFrecuencia);
+					bottomGlobo = bottomGloboFrecuencia;
 					cronometro.Restart();
-
-					
 				}
+
+
 			}
 			else
 			{
@@ -118,11 +128,14 @@ namespace Entrada
             waveIn.DataAvailable += WaveIn_DataAvailable;
 
             waveIn.StartRecording();
+
             llenarListaElementos();
-           
 
+			cronometro.Start();
+		
+			bottomGlobo = (float)Canvas.GetBottom(Globo);
+		}
 
-        }
 
 		private void WaveIn_DataAvailable(object sender, WaveInEventArgs e)
 		{
@@ -185,14 +198,17 @@ namespace Entrada
 				float frecuenciaFundamental = (float)(indiceSeñalConMasPresencia * waveIn.WaveFormat.SampleRate) / (float)valoresAbsolutos.Length;
 
 
-				bottomCarro = (frecuenciaFundamental - 500) / 3;
+				if (frecuenciaFundamental < 700 && frecuenciaFundamental > 100)
+				{
+					bottomGloboFrecuencia = (frecuenciaFundamental - 200) * 2;
+				}
 
-				if (bottomCarro < 0)
+				if (bottomGloboFrecuencia < 0)
 				{
-					bottomCarro = 0;
-				} else if (bottomCarro > 500)
+					bottomGloboFrecuencia = 0;
+				} else if (bottomGloboFrecuencia > 600)
 				{
-					bottomCarro = 500;
+					bottomGloboFrecuencia = 600;
 				}
 
 

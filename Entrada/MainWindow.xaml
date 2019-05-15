@@ -10,8 +10,7 @@
         <Button x:Name="btnIniciar" Content="Iniciar" HorizontalAlignment="Left" Margin="28,21,0,0" VerticalAlignment="Top" Width="75" Click="btnIniciar_Click"/>
         <TextBlock x:Name="lblFrecuencia" HorizontalAlignment="Left" Margin="976,10,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" FontSize="48" Width="286" TextAlignment="Right"/>
         <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="600" Margin="10,46,0,0" VerticalAlignment="Top" Width="1252">
-
-            <Image x:Name="imgCarro" Height="100"  Canvas.Bottom="250" Width="100" Source="globo.png" RenderTransformOrigin="0.526,0.55" Canvas.Left="96" Canvas.Top="290">
+            <Image x:Name="Globo" Height="100"  Canvas.Bottom="250" Width="100" Source="carro.png" RenderTransformOrigin="0.71,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="-1"/>
