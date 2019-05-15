@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
     <Grid>
-        <Button x:Name="btnIniciar" Content="Iniciar" HorizontalAlignment="Left" Margin="28,21,0,0" VerticalAlignment="Top" Width="75" Click="btnIniciar_Click"/>
+        <Button x:Name="btnIniciar" Content="Iniciar" HorizontalAlignment="Left" Margin="14,11,0,0" VerticalAlignment="Top" Width="75" Click="btnIniciar_Click"/>
         <TextBlock x:Name="lblFrecuencia" HorizontalAlignment="Left" Margin="976,10,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" FontSize="48" Width="286" TextAlignment="Right"/>
         <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="600" Margin="10,46,0,0" VerticalAlignment="Top" Width="1252">
-            <Image x:Name="Globo" Height="100"  Canvas.Bottom="250" Width="100" Source="carro.png" RenderTransformOrigin="0.71,0.5">
+            <Image x:Name="Globo" Height="100"  Canvas.Bottom="250" Canvas.Left="66" Width="100" Source="carro.png" RenderTransformOrigin="0.71,0.5" Canvas.Top="263" Canvas.Right="112">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="-1"/>
@@ -20,16 +20,16 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image x:Name="imgBatman" Height="146" Canvas.Left="554" Canvas.Top="188" Width="126" Source="batman.png"/>
+            <Image x:Name="imgBatman" Height="146" Canvas.Left="479" Canvas.Right="221" Width="105" Source="batman.png" Canvas.Bottom="219"/>
             <Image x:Name="imgNube" Height="100" Canvas.Left="1010" Canvas.Top="112" Width="158" Source="nube1.png"/>
             <Image x:Name="imgOvni" Height="134" Canvas.Left="960" Canvas.Top="269" Width="150" Source="ovni.png" RenderTransformOrigin="2.693,0.97"/>
-            <Image x:Name="imgPutin" Height="136" Canvas.Left="510" Canvas.Top="382" Width="150" Source="putin.png"/>
+            <Image x:Name="imgPutin" Height="136" Canvas.Left="960" Canvas.Top="403" Width="150" Source="putin.png"/>
             <Image x:Name="imgEdificio" Height="426" Canvas.Left="780" Canvas.Top="176" Width="144" Source="edificio1.png"  />
             <Image Height="100" Canvas.Left="1110" Canvas.Top="499" Width="100" />
 
             <TextBlock x:Name="lbl_frecuencia200" TextWrapping="Wrap" Text="200 " Canvas.Top="565" FontFamily="Agero" FontSize="32"/>
-            <TextBlock x:Name="lbl_frecuencia325" TextWrapping="Wrap" Text="350 " Canvas.Top="325" FontFamily="Agero" FontSize="32"/>
-            <TextBlock x:Name="lbl_frecuencia450" TextWrapping="Wrap" Text="500 "  Canvas.Top="0" FontFamily="Agero" FontSize="32"/>
+            <TextBlock x:Name="lbl_frecuencia355" TextWrapping="Wrap" Text="350" Canvas.Top="293" FontFamily="Agero" FontSize="32"/>
+            <TextBlock x:Name="lbl_frecuencia500" TextWrapping="Wrap" Text="500 "  Canvas.Top="0" FontFamily="Agero" FontSize="32"/>
         </Canvas>
 
     </Grid>

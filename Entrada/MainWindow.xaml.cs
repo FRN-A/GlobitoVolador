@@ -44,7 +44,7 @@ namespace Entrada
         float velocidadEnemigo = 0.8f;
 
         List<Image> elementos = new List<Image>();
-
+        
 		
 
 		public MainWindow()
@@ -61,7 +61,6 @@ namespace Entrada
 
         private void llenarListaElementos()
         {
-            elementos.Add(imgCarro);
             elementos.Add(imgBatman);
             elementos.Add(imgEdificio);
             elementos.Add(imgNube);
@@ -78,17 +77,34 @@ namespace Entrada
             foreach (Image imagen in elementos)
             {
                 var leftElemento = Canvas.GetLeft(imagen);
-                Canvas.SetLeft(imagen, (leftElemento -= (velocidadEnemigo * tiempoDiferencial) * 0.5));
+                Canvas.SetLeft(imagen, (leftElemento -= (velocidadEnemigo * tiempoDiferencial) * 0.1));
+                
             }
+        }
+        private bool colisiones(Image imagen1, Image imagen2)
+        {
+            
+            return
+                (Canvas.GetLeft(imagen1) + imagen1.ActualWidth > Canvas.GetLeft(imagen2) && Canvas.GetLeft(imagen1) < Canvas.GetLeft(imagen2) + imagen2.ActualWidth) &&
+                (Canvas.GetBottom(imagen1) < Canvas.GetBottom(imagen2) + imagen2.ActualHeight && Canvas.GetBottom(imagen1) + imagen1.ActualHeight > Canvas.GetBottom(imagen2))
+           
+                ;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
 		{
 			lblFrecuencia.Text = frecuenciaActual.ToString("f");
 
-			if(bottomGlobo > 0)
+            if (colisiones(Globo,elementos[0]))
+            {
+                lbl_frecuencia200.Text = "colision";
+               
+            }
+            lbl_frecuencia500.Text = Canvas.GetRight(Globo).ToString();
+            lbl_frecuencia355.Text = Canvas.GetRight(elementos[0]).ToString();
+            if (bottomGlobo > 0)
 			{
-				Canvas.SetBottom(Globo, bottomGlobo--);
+				//Canvas.SetBottom(Globo, bottomGlobo--);
 			}
 			
 
