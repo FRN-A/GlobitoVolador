@@ -100,5 +100,18 @@
   <ItemGroup>
     <Resource Include="carro.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="batman.png" />
+    <Resource Include="cielo.png" />
+    <Resource Include="nube1.png" />
+    <Resource Include="ovni.png" />
+    <Resource Include="putin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="globo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="edificio1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
