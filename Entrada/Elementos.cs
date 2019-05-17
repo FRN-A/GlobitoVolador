@@ -22,12 +22,12 @@ namespace Entrada
     public class Elementos 
     {
         public Image Imagen { get; set; }
-        public Rect Rectangulo { get; set; }
-
-        public Elementos(Image imagen)
+        public double Left { get; set; }
+        
+        public Elementos(Image imagen, double left)
         {
             this.Imagen = imagen;
-            Rectangulo = new Rect();
+            Left = left;
         }
     }
 }

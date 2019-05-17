@@ -43,8 +43,8 @@ namespace Entrada
         float tiempoAnterior = 0.0f;
         float velocidadEnemigo = 0.8f;
 
-        List<Image> elementos = new List<Image>();
-        
+        List<Elementos> elementos = new List<Elementos>();
+        List<Image> nubes = new List<Image>();
 		
 
 		public MainWindow()
@@ -61,50 +61,102 @@ namespace Entrada
 
         private void llenarListaElementos()
         {
-            elementos.Add(imgBatman);
-            elementos.Add(imgEdificio);
-            elementos.Add(imgNube);
-            elementos.Add(imgOvni);
-            elementos.Add(imgPutin);
-           
+            elementos.Add(new Elementos(imgPino1, Canvas.GetLeft(imgPino1)));
+            elementos.Add(new Elementos(imgPino2, Canvas.GetLeft(imgPino2)));
+            elementos.Add(new Elementos(imgOvni, Canvas.GetLeft(imgOvni)));
+            elementos.Add(new Elementos(imgPino3, Canvas.GetLeft(imgPino3)));
+            elementos.Add(new Elementos(imgPino4, Canvas.GetLeft(imgPino4)));
+
+            //Nubes
+            nubes.Add(imgNube);
+            nubes.Add(imgNube_Copy);
+            nubes.Add(imgNube_Copy1);
+            nubes.Add(imgNube_Copy10);
+            nubes.Add(imgNube_Copy11);
+            nubes.Add(imgNube_Copy12);
+            nubes.Add(imgNube_Copy13);
+            nubes.Add(imgNube_Copy14);
+            nubes.Add(imgNube_Copy15);
+            nubes.Add(imgNube_Copy16);
+            nubes.Add(imgNube_Copy17);
+            nubes.Add(imgNube_Copy18);
+            nubes.Add(imgNube_Copy19);
+            nubes.Add(imgNube_Copy20);
+            nubes.Add(imgNube_Copy21);
+            nubes.Add(imgNube_Copy22);
+            nubes.Add(imgNube_Copy23);
+            nubes.Add(imgNube_Copy24);
+            nubes.Add(imgNube_Copy25);
+            nubes.Add(imgNube_Copy26);
+            nubes.Add(imgNube_Copy2);
+            nubes.Add(imgNube_Copy3);
+            nubes.Add(imgNube_Copy4);
+            nubes.Add(imgNube_Copy5);
+            nubes.Add(imgNube_Copy6);
+            nubes.Add(imgNube_Copy7);
+            nubes.Add(imgNube_Copy8);
+            nubes.Add(imgNube_Copy9);
         }
+
+        void resetLeftElementos()
+        {
+            foreach (Elementos elemento in elementos)
+            {
+                Canvas.SetLeft(elemento.Imagen, elemento.Left);
+            }
+        }
+
         private void moverElementos()
         {
             tiempoActual = cronometroElementos.ElapsedMilliseconds;
             tiempoDiferencial = tiempoActual - tiempoAnterior;
             tiempoAnterior = tiempoActual;
 
-            foreach (Image imagen in elementos)
+            
+            if(Canvas.GetLeft(elementos[elementos.Count - 1].Imagen) < -300){
+                resetLeftElementos();
+            }
+        
+            foreach (Elementos elemento in elementos)
             {
-                var leftElemento = Canvas.GetLeft(imagen);
-                Canvas.SetLeft(imagen, (leftElemento -= (velocidadEnemigo * tiempoDiferencial) * 0.1));
+                var leftElemento = Canvas.GetLeft(elemento.Imagen);
+                Canvas.SetLeft(elemento.Imagen, (leftElemento -= (velocidadEnemigo * tiempoDiferencial) * 0.1));
                 
             }
         }
         private bool colisiones(Image imagen1, Image imagen2)
         {
-            
-            return
-                (Canvas.GetLeft(imagen1) + imagen1.ActualWidth > Canvas.GetLeft(imagen2) && Canvas.GetLeft(imagen1) < Canvas.GetLeft(imagen2) + imagen2.ActualWidth) &&
-                (Canvas.GetBottom(imagen1) < Canvas.GetBottom(imagen2) + imagen2.ActualHeight && Canvas.GetBottom(imagen1) + imagen1.ActualHeight > Canvas.GetBottom(imagen2))
-           
-                ;
+            bool colision = (Canvas.GetLeft(imagen1) + imagen1.ActualWidth > Canvas.GetLeft(imagen2) && Canvas.GetLeft(imagen1) < Canvas.GetLeft(imagen2) + imagen2.ActualWidth) &&
+            (Canvas.GetTop(imagen1) < Canvas.GetTop(imagen2) + imagen2.ActualHeight && Canvas.GetTop(imagen1) + imagen1.ActualHeight > Canvas.GetTop(imagen2));
+
+            return colision;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
 		{
 			lblFrecuencia.Text = frecuenciaActual.ToString("f");
+            moverElementos();
+            moverNubes();
 
-            if (colisiones(Globo,elementos[0]))
+            lbl_frecuencia355.Text = Canvas.GetLeft(Globo).ToString() + " " + Canvas.GetBottom(Globo).ToString() + " " + Canvas.GetTop(Globo).ToString();
+            lbl_frecuencia500.Text = Canvas.GetLeft(elementos[1].Imagen).ToString() + " " + Canvas.GetTop(elementos[1].Imagen).ToString() + " " + (Canvas.GetTop(elementos[1].Imagen) - elementos[1].Imagen.Height).ToString();
+
+            foreach (Elementos elemento in elementos)
             {
-                lbl_frecuencia200.Text = "colision";
-               
+                if (colisiones(Globo, elemento.Imagen))
+                {
+                    lbl_frecuencia200.Text = "colision";
+
+                }
+                else
+                {
+                    lbl_frecuencia200.Text = "";
+                }
             }
-            lbl_frecuencia500.Text = Canvas.GetRight(Globo).ToString();
-            lbl_frecuencia355.Text = Canvas.GetRight(elementos[0]).ToString();
-            if (bottomGlobo > 0)
+
+            if (bottomGlobo < 500) 
 			{
-				//Canvas.SetBottom(Globo, bottomGlobo--);
+				Canvas.SetTop(Globo, bottomGlobo++);
 			}
 			
 
@@ -115,7 +167,7 @@ namespace Entrada
 				//evaluar si ya paso un segundo
 				if(cronometro.ElapsedMilliseconds >= 500)
 				{
-					Canvas.SetBottom(Globo, bottomGloboFrecuencia);
+					Canvas.SetTop(Globo, bottomGloboFrecuencia);
 					bottomGlobo = bottomGloboFrecuencia;
 					cronometro.Restart();
 				}
@@ -126,9 +178,22 @@ namespace Entrada
 			{
 				cronometro.Restart();
 			}
-            moverElementos();
+            
         }
+        private void moverNubes()
+        {
 
+            foreach (Image imagen in nubes)
+            {
+                if (Canvas.GetLeft(imagen) < -160)
+                {
+                    Canvas.SetLeft(imagen, 1300);
+                }
+                var leftElemento = Canvas.GetLeft(imagen);
+                Canvas.SetLeft(imagen, (leftElemento -= (velocidadEnemigo * tiempoDiferencial) * 0.1));
+
+            }
+        }
         private void btnIniciar_Click(object sender, RoutedEventArgs e)
         {
 			timer.Start();
@@ -149,7 +214,7 @@ namespace Entrada
 
 			cronometro.Start();
 		
-			bottomGlobo = (float)Canvas.GetBottom(Globo);
+			bottomGlobo = (float)Canvas.GetTop(Globo);
 		}
 
 
@@ -216,15 +281,15 @@ namespace Entrada
 
 				if (frecuenciaFundamental < 700 && frecuenciaFundamental > 100)
 				{
-					bottomGloboFrecuencia = (frecuenciaFundamental - 200) * 2;
+					bottomGloboFrecuencia = Math.Abs((frecuenciaFundamental - 200) * 2 - 600);
 				}
 
 				if (bottomGloboFrecuencia < 0)
 				{
 					bottomGloboFrecuencia = 0;
-				} else if (bottomGloboFrecuencia > 600)
+				} else if (bottomGloboFrecuencia > 500)
 				{
-					bottomGloboFrecuencia = 600;
+					bottomGloboFrecuencia = 500;
 				}
 
 

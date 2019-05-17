@@ -9,8 +9,8 @@
     <Grid>
         <Button x:Name="btnIniciar" Content="Iniciar" HorizontalAlignment="Left" Margin="14,11,0,0" VerticalAlignment="Top" Width="75" Click="btnIniciar_Click"/>
         <TextBlock x:Name="lblFrecuencia" HorizontalAlignment="Left" Margin="976,10,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" FontSize="48" Width="286" TextAlignment="Right"/>
-        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="600" Margin="10,46,0,0" VerticalAlignment="Top" Width="1252">
-            <Image x:Name="Globo" Height="100"  Canvas.Bottom="250" Canvas.Left="66" Width="100" Source="carro.png" RenderTransformOrigin="0.71,0.5" Canvas.Top="263" Canvas.Right="112">
+        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="600" Margin="10,74,0,0" VerticalAlignment="Top" Width="1252" Background="#FF3DC9FD">
+            <Image x:Name="Globo" Height="122"  Canvas.Top="0" Canvas.Left="22" Width="126" Source="globo.png" RenderTransformOrigin="0.71,0.5" >
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="-1"/>
@@ -20,17 +20,50 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image x:Name="imgBatman" Height="146" Canvas.Left="479" Canvas.Right="221" Width="105" Source="batman.png" Canvas.Bottom="219"/>
-            <Image x:Name="imgNube" Height="100" Canvas.Left="1010" Canvas.Top="112" Width="158" Source="nube1.png"/>
-            <Image x:Name="imgOvni" Height="134" Canvas.Left="960" Canvas.Top="269" Width="150" Source="ovni.png" RenderTransformOrigin="2.693,0.97"/>
-            <Image x:Name="imgPutin" Height="136" Canvas.Left="960" Canvas.Top="403" Width="150" Source="putin.png"/>
-            <Image x:Name="imgEdificio" Height="426" Canvas.Left="780" Canvas.Top="176" Width="144" Source="edificio1.png"  />
-            <Image Height="100" Canvas.Left="1110" Canvas.Top="499" Width="100" />
 
-            <TextBlock x:Name="lbl_frecuencia200" TextWrapping="Wrap" Text="200 " Canvas.Top="565" FontFamily="Agero" FontSize="32"/>
-            <TextBlock x:Name="lbl_frecuencia355" TextWrapping="Wrap" Text="350" Canvas.Top="293" FontFamily="Agero" FontSize="32"/>
-            <TextBlock x:Name="lbl_frecuencia500" TextWrapping="Wrap" Text="500 "  Canvas.Top="0" FontFamily="Agero" FontSize="32"/>
+
+            <TextBlock x:Name="lbl_frecuencia200" TextWrapping="Wrap" Text="200 " Canvas.Top="566" FontFamily="Agero" FontSize="32" RenderTransformOrigin="0.75,0.622" Canvas.Left="8"/>
+            <TextBlock x:Name="lbl_frecuencia355" TextWrapping="Wrap" Text="350" Canvas.Top="288" FontFamily="Agero" FontSize="32" Canvas.Left="10"/>
+            <TextBlock x:Name="lbl_frecuencia500" TextWrapping="Wrap" Text="500 "  Canvas.Top="0" FontFamily="Agero" FontSize="32" Canvas.Left="5"/>
+            <Image x:Name="imgNube_Copy1" Height="58" Canvas.Left="318" Canvas.Top="99" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy3" Height="58" Canvas.Left="547" Canvas.Top="210" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy5" Height="58" Canvas.Left="367" Canvas.Top="112" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy7" Height="58" Canvas.Left="505" Canvas.Top="219" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy8" Height="58" Canvas.Top="10" Width="158" Source="nube1.png" Opacity="0.75" Canvas.Left="72"/>
+            <Image x:Name="imgNube_Copy" Height="58" Canvas.Left="562" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy2" Height="58" Canvas.Left="1106" Canvas.Top="242" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy4" Height="58" Canvas.Left="1061" Canvas.Top="235" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy6" Height="58" Width="158" Source="nube1.png" Opacity="0.75" Canvas.Left="619" Canvas.Top="11"/>
+            <Image x:Name="imgNube_Copy9" Height="58" Canvas.Top="121" Width="158" Source="nube1.png" Opacity="0.75" Canvas.Left="835"/>
+            <Image x:Name="imgNube_Copy10" Height="58" Canvas.Left="869" Canvas.Top="128" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy11" Height="58" Canvas.Left="689" Canvas.Top="477" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy12" Height="58" Canvas.Left="792" Canvas.Top="321" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy13" Height="58" Canvas.Left="272" Canvas.Top="344" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy14" Height="58" Canvas.Top="489" Width="158" Source="nube1.png" Opacity="0.75" Canvas.Left="723"/>
+            <Image x:Name="imgNube_Copy15" Height="58" Canvas.Left="830" Canvas.Top="331" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy16" Height="58" Canvas.Left="237" Canvas.Top="323" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy17" Height="58" Canvas.Left="1035" Canvas.Top="10" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy18" Height="58" Width="158" Source="nube1.png" Opacity="0.75" Canvas.Left="989" RenderTransformOrigin="0.5,0.534" Canvas.Top="15"/>
+            <Image x:Name="imgNube_Copy19" Height="58" Canvas.Left="-25" Canvas.Top="175" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy20" Height="58" Canvas.Left="24" Canvas.Top="188" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy21" Height="58" Canvas.Left="1174" Canvas.Top="507" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy22" Height="58" Width="158" Source="nube1.png" Opacity="0.75" Canvas.Left="1128" RenderTransformOrigin="0.5,0.534" Canvas.Top="512"/>
+            <Image x:Name="imgNube_Copy23" Height="58" Canvas.Left="8" Canvas.Top="479" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy24" Height="58" Canvas.Top="488" Width="158" Source="nube1.png" Opacity="0.75" Canvas.Left="54"/>
+            <Image x:Name="imgNube_Copy25" Height="58" Canvas.Left="438" Canvas.Top="465" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgNube_Copy26" Height="58" Canvas.Top="477" Width="158" Source="nube1.png" Opacity="0.75" Canvas.Left="472"/>
+            <Image x:Name="imgNube" Height="58" Canvas.Left="122" Canvas.Top="2" Width="158" Source="nube1.png" Opacity="0.75"/>
+            <Image x:Name="imgOvni" Height="134" Canvas.Left="2160" Canvas.Top="50" Width="150" Source="ovni.png" />
+            <Image x:Name="imgPino1" Height="730" Canvas.Left="1200"  Width="338" Source="pino.png"  Canvas.Top="425"/>
+            <Image x:Name="imgPino2" Height="731" Canvas.Left="1635"  Width="338" Source="pino.png"  Canvas.Top="204"  />
+            <Image x:Name="imgPino3" Height="731" Canvas.Left="2070"  Width="338" Source="pino.png"  Canvas.Top="424" />
+            <Image x:Name="imgPino4" Height="731" Canvas.Left="2491"  Width="338" Source="pino.png"  Canvas.Top="150"/>
+
+
+
         </Canvas>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="14,479,-2951,0" VerticalAlignment="Top" Width="4209"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="14,261,-2951,0" VerticalAlignment="Top" Width="4209"/>
 
     </Grid>
 </Window>
