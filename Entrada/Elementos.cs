@@ -23,11 +23,13 @@ namespace Entrada
     {
         public Image Imagen { get; set; }
         public double Left { get; set; }
+        public bool punto { get; set; }
         
         public Elementos(Image imagen, double left)
         {
             this.Imagen = imagen;
             Left = left;
+            punto = true;
         }
     }
 }

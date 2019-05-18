@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Entrada"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280">
- 
+        Title="MainWindow" Height="631.25" Width="1260">
     <Grid>
         <Button x:Name="btnIniciar" Content="Iniciar" HorizontalAlignment="Left" Margin="454,330,0,0" VerticalAlignment="Top" Width="300" Click="btnIniciar_Click" Panel.ZIndex="100" Height="110" Foreground="{x:Null}" BorderBrush="{x:Null}">
             <Button.Background>
@@ -47,7 +46,7 @@
             </Image>
 
 
-            <TextBlock x:Name="lbl_frecuencia200" TextWrapping="Wrap" Text="200 " Canvas.Top="566" FontFamily="Agero" FontSize="32" RenderTransformOrigin="0.75,0.622" Canvas.Left="8"/>
+            <TextBlock x:Name="lbl_frecuencia200" TextWrapping="Wrap" Text="200 " Canvas.Top="560" FontFamily="Agero" FontSize="32" RenderTransformOrigin="0.75,0.622" Canvas.Left="8"/>
             <TextBlock x:Name="lbl_frecuencia355" TextWrapping="Wrap" Text="350" Canvas.Top="288" FontFamily="Agero" FontSize="32" Canvas.Left="10"/>
             <TextBlock x:Name="lbl_frecuencia500" TextWrapping="Wrap" Text="500 "  Canvas.Top="0" FontFamily="Agero" FontSize="32" Canvas.Left="5"/>
             <Image x:Name="imgNube_Copy1" Height="58" Canvas.Left="318" Canvas.Top="99" Width="158" Source="nube1.png" Opacity="0.75"/>
@@ -83,12 +82,16 @@
             <Image x:Name="imgPino2" Height="731" Canvas.Left="1635"  Width="338" Source="pino.png"  Canvas.Top="204"  />
             <Image x:Name="imgPino3" Height="731" Canvas.Left="2070"  Width="338" Source="pino.png"  Canvas.Top="424" />
             <Image x:Name="imgPino4" Height="731" Canvas.Left="2491"  Width="338" Source="pino.png"  Canvas.Top="150"/>
+            <Image x:Name="imgBatman" Height="134" Canvas.Left="2160" Canvas.Top="50" Width="150" Source="batman.png" />
+            <Image x:Name="imgEdificio1" Height="730" Canvas.Left="1200"  Width="338" Source="edificio1.png"  Canvas.Top="425"/>
+            <Image x:Name="imgEdificio2" Height="731" Canvas.Left="1635"  Width="338" Source="edificio1.png"  Canvas.Top="204"  />
+            <Image x:Name="imgEdificio3" Height="731" Canvas.Left="2070"  Width="338" Source="edificio1.png"  Canvas.Top="424" />
+            <Image x:Name="imgEdificio4" Height="731" Canvas.Left="2491"  Width="338" Source="edificio1.png"  Canvas.Top="150"/>
+           
 
 
 
         </Canvas>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="14,479,-2951,0" VerticalAlignment="Top" Width="4209"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="14,261,-2951,0" VerticalAlignment="Top" Width="4209"/>
         <Button x:Name="btnReset" Content="Iniciar" HorizontalAlignment="Left" Margin="454,330,0,0" VerticalAlignment="Top" Width="300" Click="btnIniciar_Click" Panel.ZIndex="100" Height="110" Foreground="{x:Null}" BorderBrush="{x:Null}" Visibility="Hidden">
             <Button.Background>
                 <ImageBrush ImageSource="botonreset.png" Stretch="Uniform"/>
