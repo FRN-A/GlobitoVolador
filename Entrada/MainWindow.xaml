@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="631.25" Width="1260">
     <Grid>
-        <Button x:Name="btnIniciar" Content="Iniciar" HorizontalAlignment="Left" Margin="454,330,0,0" VerticalAlignment="Top" Width="300" Click="btnIniciar_Click" Panel.ZIndex="100" Height="110" Foreground="{x:Null}" BorderBrush="{x:Null}">
+        <TextBlock x:Name="lblScore" HorizontalAlignment="Left" Margin="522,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Score: 0" FontSize="48" RenderTransformOrigin="-0.754,-2.703" Width="234" Foreground="White" Panel.ZIndex="120" Visibility="Hidden"/>
+        <Button x:Name="btnIniciar" Content="Iniciar" HorizontalAlignment="Left" Margin="454,256,0,0" VerticalAlignment="Top" Width="300" Click="btnIniciar_Click" Panel.ZIndex="100" Height="110" Foreground="{x:Null}" BorderBrush="{x:Null}">
             <Button.Background>
                 <ImageBrush ImageSource="botonStar.png" Stretch="Uniform"/>
             </Button.Background>
@@ -31,9 +32,9 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Rectangle x:Name="Fondo" HorizontalAlignment="Left" Height="689" Stroke="Black" Fill="Black" Opacity="0.8" VerticalAlignment="Top" Width="1272" Visibility="Visible" Panel.ZIndex="90"/>
-        <TextBlock x:Name="lblFrecuencia" HorizontalAlignment="Left" Margin="976,10,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" FontSize="48" Width="286" TextAlignment="Right"/>
-        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="600" Margin="10,74,0,0" VerticalAlignment="Top" Width="1252" Background="#FF3DC9FD">
+        <Rectangle x:Name="Fondo" HorizontalAlignment="Left" Height="689" Stroke="Black" Fill="Black" Opacity="0.8" VerticalAlignment="Top" Width="1272" Visibility="Visible" Panel.ZIndex="90" Margin="-12,-16,-8,-73"/>
+        <TextBlock x:Name="lblPuntos" HorizontalAlignment="Left" Margin="942,10,0,0" TextWrapping="Wrap" Panel.ZIndex="50" Text="0" VerticalAlignment="Top" FontSize="48" Width="286" TextAlignment="Right"/>
+        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1252" Background="#FF3DC9FD">
             <Image x:Name="Globo" Height="122"  Canvas.Top="0" Canvas.Left="22" Width="126" Source="globo.png" RenderTransformOrigin="0.71,0.5" >
                 <Image.RenderTransform>
                     <TransformGroup>
@@ -87,12 +88,12 @@
             <Image x:Name="imgEdificio2" Height="731" Canvas.Left="1635"  Width="338" Source="edificio1.png"  Canvas.Top="204"  />
             <Image x:Name="imgEdificio3" Height="731" Canvas.Left="2070"  Width="338" Source="edificio1.png"  Canvas.Top="424" />
             <Image x:Name="imgEdificio4" Height="731" Canvas.Left="2491"  Width="338" Source="edificio1.png"  Canvas.Top="150"/>
-           
+
 
 
 
         </Canvas>
-        <Button x:Name="btnReset" Content="Iniciar" HorizontalAlignment="Left" Margin="454,330,0,0" VerticalAlignment="Top" Width="300" Click="btnIniciar_Click" Panel.ZIndex="100" Height="110" Foreground="{x:Null}" BorderBrush="{x:Null}" Visibility="Hidden">
+        <Button x:Name="btnReset" Content="Iniciar" HorizontalAlignment="Left" Margin="454,258,0,0" VerticalAlignment="Top" Width="300" Click="btnIniciar_Click" Panel.ZIndex="100" Height="110" Foreground="{x:Null}" BorderBrush="{x:Null}" Visibility="Hidden">
             <Button.Background>
                 <ImageBrush ImageSource="botonreset.png" Stretch="Uniform"/>
             </Button.Background>
@@ -118,5 +119,5 @@
         </Button>
 
     </Grid>
-    
+
 </Window>
