@@ -29,43 +29,54 @@ namespace Entrada
     public partial class MainWindow : Window
     {
         WaveIn waveIn;
-		DispatcherTimer timer;
-		Stopwatch cronometro;
+        DispatcherTimer timer;
+        Stopwatch cronometro;
         Stopwatch cronometroElementos;
 
-		float bottomGloboFrecuencia;
-		float bottomGlobo;
-		float frecuenciaActual = 0;
-		float frecuenciaAnterior;
+        float bottomGloboFrecuencia;
+        float bottomGlobo;
+        float frecuenciaActual = 0;
+        float frecuenciaAnterior;
 
         float tiempoActual = 0.0f;
         float tiempoDiferencial = 0.0f;
         float tiempoAnterior = 0.0f;
         float velocidadEnemigo = 0.8f;
+        bool contVueltas = false;
 
-        List<Elementos> elementos = new List<Elementos>();
+        List<Elementos>[] elementos = new List<Elementos>[2];
+
         List<Image> nubes = new List<Image>();
 		
-
 		public MainWindow()
         {
 			timer = new DispatcherTimer();
 			timer.Interval = TimeSpan.FromMilliseconds(20);
 			timer.Tick += Timer_Tick;
 
-			
-			cronometro = new Stopwatch();
+            elementos[0] = new List<Elementos>();
+            elementos[1] = new List<Elementos>();
+
+            cronometro = new Stopwatch();
             cronometroElementos = new Stopwatch();
 			InitializeComponent();
         }
 
         private void llenarListaElementos()
         {
-            elementos.Add(new Elementos(imgPino1, Canvas.GetLeft(imgPino1)));
-            elementos.Add(new Elementos(imgPino2, Canvas.GetLeft(imgPino2)));
-            elementos.Add(new Elementos(imgOvni, Canvas.GetLeft(imgOvni)));
-            elementos.Add(new Elementos(imgPino3, Canvas.GetLeft(imgPino3)));
-            elementos.Add(new Elementos(imgPino4, Canvas.GetLeft(imgPino4)));
+            //Escenario 1
+            elementos[0].Add(new Elementos(imgPino1, Canvas.GetLeft(imgPino1)));
+            elementos[0].Add(new Elementos(imgPino2, Canvas.GetLeft(imgPino2)));
+            elementos[0].Add(new Elementos(imgOvni, Canvas.GetLeft(imgOvni)));
+            elementos[0].Add(new Elementos(imgPino3, Canvas.GetLeft(imgPino3)));
+            elementos[0].Add(new Elementos(imgPino4, Canvas.GetLeft(imgPino4)));
+
+            //Esecanrio 2
+            elementos[1].Add(new Elementos(imgEdificio1, Canvas.GetLeft(imgEdificio1)));
+            elementos[1].Add(new Elementos(imgEdificio2, Canvas.GetLeft(imgEdificio2)));
+            elementos[1].Add(new Elementos(imgBatman, Canvas.GetLeft(imgBatman)));
+            elementos[1].Add(new Elementos(imgEdificio3, Canvas.GetLeft(imgEdificio3)));
+            elementos[1].Add(new Elementos(imgEdificio4, Canvas.GetLeft(imgEdificio4)));
 
             //Nubes
             nubes.Add(imgNube);
@@ -98,12 +109,14 @@ namespace Entrada
             nubes.Add(imgNube_Copy9);
         }
 
-        void resetLeftElementos()
+        void resetLeftElementos(int i)
         {
-            foreach (Elementos elemento in elementos)
+            foreach (Elementos elemento in elementos[i])
             {
                 Canvas.SetLeft(elemento.Imagen, elemento.Left);
             }
+
+            
         }
 
         private void moverElementos()
@@ -112,18 +125,39 @@ namespace Entrada
             tiempoDiferencial = tiempoActual - tiempoAnterior;
             tiempoAnterior = tiempoActual;
 
-            
-            if(Canvas.GetLeft(elementos[elementos.Count - 1].Imagen) < -300){
-                resetLeftElementos();
-            }
-        
-            foreach (Elementos elemento in elementos)
+            foreach (Elementos elemento in elementos[0])
             {
                 var leftElemento = Canvas.GetLeft(elemento.Imagen);
                 Canvas.SetLeft(elemento.Imagen, (leftElemento -= (velocidadEnemigo * tiempoDiferencial) * 0.1));
-                
+
+            }
+
+            if (Canvas.GetLeft(elementos[0][3].Imagen) < 300 || contVueltas)
+            {
+                foreach (Elementos elemento in elementos[1])
+                {
+                    var leftElemento = Canvas.GetLeft(elemento.Imagen);
+                    Canvas.SetLeft(elemento.Imagen, (leftElemento -= (velocidadEnemigo * tiempoDiferencial) * 0.1));
+
+                }
+
+            }
+
+            if (Canvas.GetLeft(elementos[0][elementos[0].Count - 1].Imagen) < -300 && Canvas.GetLeft(elementos[1][3].Imagen) < 300)
+            {
+                resetLeftElementos(0);
+                contVueltas = true;
+            }
+
+            if (Canvas.GetLeft(elementos[1][elementos[1].Count - 1].Imagen) < -300 && Canvas.GetLeft(elementos[0][3].Imagen) < 300)
+            {
+                resetLeftElementos(1);
+                contVueltas = false;
             }
         }
+
+
+
         private bool colisiones(Image imagen1, Image imagen2)
         {
             bool colision = (Canvas.GetLeft(imagen1) + imagen1.ActualWidth > Canvas.GetLeft(imagen2) && Canvas.GetLeft(imagen1) < Canvas.GetLeft(imagen2) + imagen2.ActualWidth) &&
@@ -138,15 +172,12 @@ namespace Entrada
             moverElementos();
             moverNubes();
 
-            lbl_frecuencia355.Text = Canvas.GetLeft(Globo).ToString() + " " + Canvas.GetBottom(Globo).ToString() + " " + Canvas.GetTop(Globo).ToString();
-            lbl_frecuencia500.Text = Canvas.GetLeft(elementos[1].Imagen).ToString() + " " + Canvas.GetTop(elementos[1].Imagen).ToString() + " " + (Canvas.GetTop(elementos[1].Imagen) - elementos[1].Imagen.Height).ToString();
-
-            foreach (Elementos elemento in elementos)
+            
+            foreach (Elementos elemento in elementos[0])
             {
                 if (colisiones(Globo, elemento.Imagen))
                 {
                     lbl_frecuencia200.Text = "colision";
-
                 }
                 else
                 {

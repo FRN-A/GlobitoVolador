@@ -58,12 +58,19 @@
             <Image x:Name="imgPino2" Height="731" Canvas.Left="1635"  Width="338" Source="pino.png"  Canvas.Top="204"  />
             <Image x:Name="imgPino3" Height="731" Canvas.Left="2070"  Width="338" Source="pino.png"  Canvas.Top="424" />
             <Image x:Name="imgPino4" Height="731" Canvas.Left="2491"  Width="338" Source="pino.png"  Canvas.Top="150"/>
+            <Image x:Name="imgBatman" Height="134" Canvas.Left="2160" Canvas.Top="50" Width="150" Source="batman.png" />
+            <Image x:Name="imgEdificio1" Height="730" Canvas.Left="1200"  Width="338" Source="edificio1.png"  Canvas.Top="425"/>
+            <Image x:Name="imgEdificio2" Height="731" Canvas.Left="1635"  Width="338" Source="edificio1.png"  Canvas.Top="204"  />
+            <Image x:Name="imgEdificio3" Height="731" Canvas.Left="2070"  Width="338" Source="edificio1.png"  Canvas.Top="424" />
+            <Image x:Name="imgEdificio4" Height="731" Canvas.Left="2491"  Width="338" Source="edificio1.png"  Canvas.Top="150"/>
+           
 
 
 
         </Canvas>
         <Button Content="Button" HorizontalAlignment="Left" Margin="14,479,-2951,0" VerticalAlignment="Top" Width="4209"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="14,261,-2951,0" VerticalAlignment="Top" Width="4209"/>
+       
 
     </Grid>
 </Window>
