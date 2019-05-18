@@ -119,5 +119,9 @@
     <Resource Include="pino.png" />
     <Resource Include="thanos arriba de un unicornio.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="botonreset.png" />
+    <Resource Include="botonStar.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

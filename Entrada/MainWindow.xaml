@@ -6,8 +6,32 @@
         xmlns:local="clr-namespace:Entrada"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
+ 
     <Grid>
-        <Button x:Name="btnIniciar" Content="Iniciar" HorizontalAlignment="Left" Margin="454,330,0,0" VerticalAlignment="Top" Width="300" Click="btnIniciar_Click" Panel.ZIndex="100" Height="110"/>
+        <Button x:Name="btnIniciar" Content="Iniciar" HorizontalAlignment="Left" Margin="454,330,0,0" VerticalAlignment="Top" Width="300" Click="btnIniciar_Click" Panel.ZIndex="100" Height="110" Foreground="{x:Null}" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="botonStar.png" Stretch="Uniform"/>
+            </Button.Background>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DarkGoldenrod"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Rectangle x:Name="Fondo" HorizontalAlignment="Left" Height="689" Stroke="Black" Fill="Black" Opacity="0.8" VerticalAlignment="Top" Width="1272" Visibility="Visible" Panel.ZIndex="90"/>
         <TextBlock x:Name="lblFrecuencia" HorizontalAlignment="Left" Margin="976,10,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" FontSize="48" Width="286" TextAlignment="Right"/>
         <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="600" Margin="10,74,0,0" VerticalAlignment="Top" Width="1252" Background="#FF3DC9FD">
@@ -65,6 +89,31 @@
         </Canvas>
         <Button Content="Button" HorizontalAlignment="Left" Margin="14,479,-2951,0" VerticalAlignment="Top" Width="4209"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="14,261,-2951,0" VerticalAlignment="Top" Width="4209"/>
+        <Button x:Name="btnReset" Content="Iniciar" HorizontalAlignment="Left" Margin="454,330,0,0" VerticalAlignment="Top" Width="300" Click="btnIniciar_Click" Panel.ZIndex="100" Height="110" Foreground="{x:Null}" BorderBrush="{x:Null}" Visibility="Hidden">
+            <Button.Background>
+                <ImageBrush ImageSource="botonreset.png" Stretch="Uniform"/>
+            </Button.Background>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DarkGoldenrod"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
     </Grid>
+    
 </Window>

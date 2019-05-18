@@ -43,10 +43,15 @@ namespace Entrada
         float tiempoAnterior = 0.0f;
         float velocidadEnemigo = 0.8f;
 
-        List<Elementos> elementos = new List<Elementos>();
-        List<Image> nubes = new List<Image>();
+		List<BitmapImage> boton = new List<BitmapImage>();
 		
 
+		List<Elementos> elementos = new List<Elementos>();
+        List<Image> nubes = new List<Image>();
+
+		
+		Image Imagen { get; set; }
+		
 		public MainWindow()
         {
 			timer = new DispatcherTimer();
@@ -54,6 +59,9 @@ namespace Entrada
 			timer.Tick += Timer_Tick;
 			cronometro = new Stopwatch();
             cronometroElementos = new Stopwatch();
+			
+			
+
 			InitializeComponent();
 			llenarListaElementos();
 
@@ -147,8 +155,8 @@ namespace Entrada
 					timer.Stop();
 					cronometro.Stop();
 					waveIn.StopRecording();
-					btnIniciar.Content = "Volver a empezar";
-					btnIniciar.Visibility = Visibility.Visible;
+					//btnIniciar.Content = "Volver a empezar";
+					btnReset.Visibility = Visibility.Visible;
 					Fondo.Visibility = Visibility.Visible;
 				}
             }
@@ -197,6 +205,7 @@ namespace Entrada
         {
 			resetLeftElementos();
 			btnIniciar.Visibility = Visibility.Hidden;
+			btnReset.Visibility = Visibility.Hidden;
 			Fondo.Visibility = Visibility.Hidden;
 
 			timer.Start();
