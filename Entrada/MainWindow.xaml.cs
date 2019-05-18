@@ -52,14 +52,14 @@ namespace Entrada
 			timer = new DispatcherTimer();
 			timer.Interval = TimeSpan.FromMilliseconds(20);
 			timer.Tick += Timer_Tick;
-
-			
 			cronometro = new Stopwatch();
             cronometroElementos = new Stopwatch();
 			InitializeComponent();
-        }
+			llenarListaElementos();
 
-        private void llenarListaElementos()
+		}
+
+		private void llenarListaElementos()
         {
             elementos.Add(new Elementos(imgPino1, Canvas.GetLeft(imgPino1)));
             elementos.Add(new Elementos(imgPino2, Canvas.GetLeft(imgPino2)));
@@ -124,6 +124,7 @@ namespace Entrada
                 
             }
         }
+
         private bool colisiones(Image imagen1, Image imagen2)
         {
             bool colision = (Canvas.GetLeft(imagen1) + imagen1.ActualWidth > Canvas.GetLeft(imagen2) && Canvas.GetLeft(imagen1) < Canvas.GetLeft(imagen2) + imagen2.ActualWidth) &&
@@ -138,20 +139,18 @@ namespace Entrada
             moverElementos();
             moverNubes();
 
-            lbl_frecuencia355.Text = Canvas.GetLeft(Globo).ToString() + " " + Canvas.GetBottom(Globo).ToString() + " " + Canvas.GetTop(Globo).ToString();
-            lbl_frecuencia500.Text = Canvas.GetLeft(elementos[1].Imagen).ToString() + " " + Canvas.GetTop(elementos[1].Imagen).ToString() + " " + (Canvas.GetTop(elementos[1].Imagen) - elementos[1].Imagen.Height).ToString();
-
+			//Game Over
             foreach (Elementos elemento in elementos)
             {
                 if (colisiones(Globo, elemento.Imagen))
                 {
-                    lbl_frecuencia200.Text = "colision";
-
-                }
-                else
-                {
-                    lbl_frecuencia200.Text = "";
-                }
+					timer.Stop();
+					cronometro.Stop();
+					waveIn.StopRecording();
+					btnIniciar.Content = "Volver a empezar";
+					btnIniciar.Visibility = Visibility.Visible;
+					Fondo.Visibility = Visibility.Visible;
+				}
             }
 
             if (bottomGlobo < 500) 
@@ -165,7 +164,7 @@ namespace Entrada
 			if (frecuenciaActual>=frecuenciaAnterior-25.0f && frecuenciaActual<=frecuenciaAnterior+25.0f)
 			{
 				//evaluar si ya paso un segundo
-				if(cronometro.ElapsedMilliseconds >= 500)
+				if (cronometro.ElapsedMilliseconds >= 500)
 				{
 					Canvas.SetTop(Globo, bottomGloboFrecuencia);
 					bottomGlobo = bottomGloboFrecuencia;
@@ -196,6 +195,10 @@ namespace Entrada
         }
         private void btnIniciar_Click(object sender, RoutedEventArgs e)
         {
+			resetLeftElementos();
+			btnIniciar.Visibility = Visibility.Hidden;
+			Fondo.Visibility = Visibility.Hidden;
+
 			timer.Start();
             cronometroElementos.Start();
             waveIn = new WaveIn();
@@ -210,8 +213,7 @@ namespace Entrada
 
             waveIn.StartRecording();
 
-            llenarListaElementos();
-
+            
 			cronometro.Start();
 		
 			bottomGlobo = (float)Canvas.GetTop(Globo);
