@@ -43,10 +43,11 @@ namespace Entrada
         float tiempoAnterior = 0.0f;
         float velocidadEnemigo = 0.8f;
         bool contVueltas = false;
+        int score = 0;
 
         List<Elementos>[] elementos = new List<Elementos>[2];
 
-        List<Image> nubes = new List<Image>();
+        List<Elementos> nubes = new List<Elementos>();
 		
 		public MainWindow()
         {
@@ -55,11 +56,11 @@ namespace Entrada
 			timer.Tick += Timer_Tick;
 
 
-      elementos[0] = new List<Elementos>();
-      elementos[1] = new List<Elementos>();
+            elementos[0] = new List<Elementos>();
+            elementos[1] = new List<Elementos>();
 
-      cronometro = new Stopwatch();
-      cronometroElementos = new Stopwatch();
+            cronometro = new Stopwatch();
+            cronometroElementos = new Stopwatch();
 			InitializeComponent();
 			llenarListaElementos();
 
@@ -82,34 +83,34 @@ namespace Entrada
             elementos[1].Add(new Elementos(imgEdificio4, Canvas.GetLeft(imgEdificio4)));
 
             //Nubes
-            nubes.Add(imgNube);
-            nubes.Add(imgNube_Copy);
-            nubes.Add(imgNube_Copy1);
-            nubes.Add(imgNube_Copy10);
-            nubes.Add(imgNube_Copy11);
-            nubes.Add(imgNube_Copy12);
-            nubes.Add(imgNube_Copy13);
-            nubes.Add(imgNube_Copy14);
-            nubes.Add(imgNube_Copy15);
-            nubes.Add(imgNube_Copy16);
-            nubes.Add(imgNube_Copy17);
-            nubes.Add(imgNube_Copy18);
-            nubes.Add(imgNube_Copy19);
-            nubes.Add(imgNube_Copy20);
-            nubes.Add(imgNube_Copy21);
-            nubes.Add(imgNube_Copy22);
-            nubes.Add(imgNube_Copy23);
-            nubes.Add(imgNube_Copy24);
-            nubes.Add(imgNube_Copy25);
-            nubes.Add(imgNube_Copy26);
-            nubes.Add(imgNube_Copy2);
-            nubes.Add(imgNube_Copy3);
-            nubes.Add(imgNube_Copy4);
-            nubes.Add(imgNube_Copy5);
-            nubes.Add(imgNube_Copy6);
-            nubes.Add(imgNube_Copy7);
-            nubes.Add(imgNube_Copy8);
-            nubes.Add(imgNube_Copy9);
+            nubes.Add(new Elementos(imgNube, Canvas.GetLeft(imgNube)));
+            nubes.Add(new Elementos(imgNube_Copy, Canvas.GetLeft(imgNube_Copy)));
+            nubes.Add(new Elementos(imgNube_Copy1, Canvas.GetLeft(imgNube_Copy1)));
+            nubes.Add(new Elementos(imgNube_Copy10, Canvas.GetLeft(imgNube_Copy10)));
+            nubes.Add(new Elementos(imgNube_Copy11, Canvas.GetLeft(imgNube_Copy11)));
+            nubes.Add(new Elementos(imgNube_Copy12, Canvas.GetLeft(imgNube_Copy12)));
+            nubes.Add(new Elementos(imgNube_Copy13, Canvas.GetLeft(imgNube_Copy13)));
+            nubes.Add(new Elementos(imgNube_Copy14, Canvas.GetLeft(imgNube_Copy14)));
+            nubes.Add(new Elementos(imgNube_Copy15, Canvas.GetLeft(imgNube_Copy15)));
+            nubes.Add(new Elementos(imgNube_Copy16, Canvas.GetLeft(imgNube_Copy16)));
+            nubes.Add(new Elementos(imgNube_Copy17, Canvas.GetLeft(imgNube_Copy17)));
+            nubes.Add(new Elementos(imgNube_Copy18, Canvas.GetLeft(imgNube_Copy18)));
+            nubes.Add(new Elementos(imgNube_Copy19, Canvas.GetLeft(imgNube_Copy19)));
+            nubes.Add(new Elementos(imgNube_Copy20, Canvas.GetLeft(imgNube_Copy20)));
+            nubes.Add(new Elementos(imgNube_Copy21, Canvas.GetLeft(imgNube_Copy21)));
+            nubes.Add(new Elementos(imgNube_Copy22, Canvas.GetLeft(imgNube_Copy22)));
+            nubes.Add(new Elementos(imgNube_Copy23, Canvas.GetLeft(imgNube_Copy23)));
+            nubes.Add(new Elementos(imgNube_Copy24, Canvas.GetLeft(imgNube_Copy24)));
+            nubes.Add(new Elementos(imgNube_Copy25, Canvas.GetLeft(imgNube_Copy25)));
+            nubes.Add(new Elementos(imgNube_Copy26, Canvas.GetLeft(imgNube_Copy26)));
+            nubes.Add(new Elementos(imgNube_Copy2, Canvas.GetLeft(imgNube_Copy2)));
+            nubes.Add(new Elementos(imgNube_Copy3, Canvas.GetLeft(imgNube_Copy3)));
+            nubes.Add(new Elementos(imgNube_Copy4, Canvas.GetLeft(imgNube_Copy4)));
+            nubes.Add(new Elementos(imgNube_Copy5, Canvas.GetLeft(imgNube_Copy5)));
+            nubes.Add(new Elementos(imgNube_Copy6, Canvas.GetLeft(imgNube_Copy6)));
+            nubes.Add(new Elementos(imgNube_Copy7, Canvas.GetLeft(imgNube_Copy7)));
+            nubes.Add(new Elementos(imgNube_Copy8, Canvas.GetLeft(imgNube_Copy8)));
+            nubes.Add(new Elementos(imgNube_Copy9, Canvas.GetLeft(imgNube_Copy9)));
         }
 
         void resetLeftElementos(int i)
@@ -117,9 +118,8 @@ namespace Entrada
             foreach (Elementos elemento in elementos[i])
             {
                 Canvas.SetLeft(elemento.Imagen, elemento.Left);
-            }
-
-            
+                elemento.punto = true;
+            }  
         }
 
         private void moverElementos()
@@ -133,6 +133,11 @@ namespace Entrada
                 var leftElemento = Canvas.GetLeft(elemento.Imagen);
                 Canvas.SetLeft(elemento.Imagen, (leftElemento -= (velocidadEnemigo * tiempoDiferencial) * 0.1));
 
+                if (leftElemento < -150 && elemento.punto){
+                    score++;
+                    elemento.punto = false;
+                }
+
             }
 
             if (Canvas.GetLeft(elementos[0][3].Imagen) < 300 || contVueltas)
@@ -142,6 +147,11 @@ namespace Entrada
                     var leftElemento = Canvas.GetLeft(elemento.Imagen);
                     Canvas.SetLeft(elemento.Imagen, (leftElemento -= (velocidadEnemigo * tiempoDiferencial) * 0.1));
 
+                    if (leftElemento < -150 && elemento.punto)
+                    {
+                        score++;
+                        elemento.punto = false;
+                    }
                 }
 
             }
@@ -169,7 +179,7 @@ namespace Entrada
 
         private void Timer_Tick(object sender, EventArgs e)
 		{
-			lblFrecuencia.Text = frecuenciaActual.ToString("f");
+			lblPuntos.Text = score.ToString();
             moverElementos();
             moverNubes();
 
@@ -183,8 +193,10 @@ namespace Entrada
 					cronometro.Stop();
 					waveIn.StopRecording();
 					btnIniciar.Content = "Volver a empezar";
+                    lblScore.Text = "Score: " + score.ToString();
 					btnIniciar.Visibility = Visibility.Visible;
 					Fondo.Visibility = Visibility.Visible;
+                    lblScore.Visibility = Visibility.Visible;
                 }
              
             }
@@ -200,7 +212,7 @@ namespace Entrada
 			if (frecuenciaActual>=frecuenciaAnterior-25.0f && frecuenciaActual<=frecuenciaAnterior+25.0f)
 			{
 				//evaluar si ya paso un segundo
-				if (cronometro.ElapsedMilliseconds >= 500)
+				if (cronometro.ElapsedMilliseconds >= 250)
 				{
 					Canvas.SetTop(Globo, bottomGloboFrecuencia);
 					bottomGlobo = bottomGloboFrecuencia;
@@ -215,27 +227,41 @@ namespace Entrada
 			}
             
         }
+
+        private void resetNubes()
+        {
+            foreach (Elementos elemento in nubes)
+            {
+                Canvas.SetLeft(elemento.Imagen, elemento.Left);
+            }
+        }
+
         private void moverNubes()
         {
 
-            foreach (Image imagen in nubes)
+            foreach (Elementos elemento in nubes)
             {
-                if (Canvas.GetLeft(imagen) < -160)
+                if (Canvas.GetLeft(elemento.Imagen) < -160)
                 {
-                    Canvas.SetLeft(imagen, 1300);
+                    Canvas.SetLeft(elemento.Imagen, 1300);
                 }
-                var leftElemento = Canvas.GetLeft(imagen);
-                Canvas.SetLeft(imagen, (leftElemento -= (velocidadEnemigo * tiempoDiferencial) * 0.1));
+                var leftElemento = Canvas.GetLeft(elemento.Imagen);
+                Canvas.SetLeft(elemento.Imagen, (leftElemento -= (velocidadEnemigo * tiempoDiferencial) * 0.1));
 
             }
         }
+
         private void btnIniciar_Click(object sender, RoutedEventArgs e)
         {
-			resetLeftElementos();
-			btnIniciar.Visibility = Visibility.Hidden;
+            score = 0;
+            resetNubes();
+			resetLeftElementos(0);
+            resetLeftElementos(1);
+            btnIniciar.Visibility = Visibility.Hidden;
 			Fondo.Visibility = Visibility.Hidden;
+            lblScore.Visibility = Visibility.Hidden;
 
-			timer.Start();
+            timer.Start();
             cronometroElementos.Start();
             waveIn = new WaveIn();
             //Formato de audio
@@ -317,7 +343,7 @@ namespace Entrada
 				float frecuenciaFundamental = (float)(indiceSeñalConMasPresencia * waveIn.WaveFormat.SampleRate) / (float)valoresAbsolutos.Length;
 
 
-				if (frecuenciaFundamental < 700 && frecuenciaFundamental > 100)
+				if (frecuenciaFundamental < 1200 && frecuenciaFundamental > 100)
 				{
 					bottomGloboFrecuencia = Math.Abs((frecuenciaFundamental - 200) * 2 - 600);
 				}
